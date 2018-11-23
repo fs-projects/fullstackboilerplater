@@ -104,7 +104,12 @@ var mongoose = require("mongoose");
 //If you will not use { useNewUrlParser: true } then you will get this error (node:4833) DeprecationWarning: current URL string parser is deprecated,
 //and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
 //source : https://stackoverflow.com/questions/50448272/avoid-current-url-string-parser-is-deprecated-warning-by-setting-usenewurlpars
-mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true });
+//mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true });
+
+
+//Below statement will allow us to connect our application to the database hosted in MLAB servers in cloud where we have created our new account and created
+//a user 'yelpcampuser1' for our database 'fsprojectsyelpcamp'.
+mongoose.connect("mongodb://yelpcampdbuser1:W0rk@@@@@@Hard@ds111748.mlab.com:11748/fsprojectsyelpcamp", { useNewUrlParser: true });
 
 
 //This is how we are importing the 'Campground model into this 'app.js' for 2 reasons: --> to make our 'app.js' as clean as possible and --> to make
