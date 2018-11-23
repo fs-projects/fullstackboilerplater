@@ -1,0 +1,67 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>Yelp Camp</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel = "stylesheet" href="/stylesheets/main.css">
+        <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+        
+        <nav class="navbar navbar-light navbar-expand-lg bg-light">
+            
+            <!--container-fluid or a full width container, spanning the entire width of the viewport.-->
+            <div class="container-fluid">
+                
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Yelp Camp</a>
+                </div>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    
+                    <!--justify-content-end will ensure that the below li's appear to the right of the nav bar see this link for reference 
+                    https://getbootstrap.com/docs/4.0/components/navs/#horizontal-alignment-->
+                    <ul class="navbar-nav ml-auto justify-content-end">
+                        <% if(!currentUser){ %>
+                            <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/register">SignUp</a></li>
+                        <% }else{ %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/#">
+                                Signed In As 
+                                <strong>
+                                    <em>
+                                        <%= currentUser.username %>
+                                    </em>
+                                </strong>
+                            </a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">LogOut</a></li>
+                        <% } %>
+                    </ul>
+                
+                </div>
+            
+            </div>
+    
+        </nav>
+        
+        <div id="login-alert" class="container">
+            <% if(error && error.length > 0){ %>
+            <!--We have to make sure that error.length > 0 because that would only mean that there is some value in the 'error' field set by flash when login was
+            not done. There can be a case when error is empty array but that doesn't mean it has no value, it has blank value, so to handle that length should be
+            checked-->
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+            <% } %>
+            <% if(success && success.length > 0){ %>
+            <!--We have to make sure that success.length > 0 because that would only mean that there is some value in the 'success' field set by flash when 
+            logout was successfully done. There can be a case when error is empty array but that doesn't mean it has no value, it has blank value, so 
+            to handle that length should be checked -->
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+            <% } %>
+        </div>
+        

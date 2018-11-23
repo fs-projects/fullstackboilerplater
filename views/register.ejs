@@ -1,0 +1,26 @@
+<% include ./partials/header %>
+
+
+<div class="container">
+    <h1 style="text-align:center">Sign Up</h1>
+    <div style="width:40%; margin:25px auto;">
+        <form action="/register" method="POST">
+            <!--.row has been added with form-group
+            Create horizontal forms with the grid by adding the .row class to form groups reference 
+            https://getbootstrap.com/docs/4.0/components/forms/-->
+            <div class="form-group row">
+                <input type="text" class="form-control" name="username" placeholder="enter your username">
+            </div>
+            <div class="form-group row">
+                <input type="password" class="form-control" name="password" placeholder="enter your password">
+            </div>
+            <div class="form-group row">
+                <button class="btn btn-lg btn-info btn-block">Register!</button>
+            </div>
+            <a href="/campgrounds/">Back to Campgrounds page</a>
+        </form>
+    </div>
+</div>
+
+
+<% include ./partials/footer %>

@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+
+<div class="container">
+    
+        <h1 style="text-align:center">Add a comment to <i>"<%= campgrounds.name %>"</i></h1>
+        <div style="width:40%; margin:25px auto;">
+            <form action="/campgrounds/<%= campgrounds._id%>/comments" method="POST">
+                <!--.row has been added with form-group
+                Create horizontal forms with the grid by adding the .row class to form groups reference 
+                https://getbootstrap.com/docs/4.0/components/forms/-->
+                <div class="form-group row">
+                    <input type="text" class="form-control" placeholder="Add your comment here" name="comment[text]">
+                </div>
+                <!--this input type has been commented by me because now we don't need the author of the comment, as the person has to login to post the 
+                <!--comment, so the username of the person should be handled by us and not by the user-->
+                <!--<div class="form-group row">-->
+                <!--    <input type="text" class="form-control" placeholder="Who is the author of this comment?" name="comment[author]">-->
+                <!--</div>-->
+                <div class="form-group row">
+                    <button class="btn btn-lg btn-info btn-block">Submit!</button>
+                </div>
+            </form>
+        <a href="/campgrounds">Back to Campgrounds page</a>
+        </div>
+</div>
+<% include ../partials/footer %>

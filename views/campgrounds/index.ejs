@@ -1,0 +1,45 @@
+<% include ../partials/header %>
+
+<!--Everything inside the body will come under the class of container and the header will be there in a jumbotron-->
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            
+            <!-- class=display4 and lead added using bootstrap documents referring to heading and paragraphs just search for display4 and lead-->
+            <h1 class="display4">Welcome to Campers Paradise!</h1>
+            <p class="lead">Here you will find best camping sites around the world</p>
+            <p>
+            <a class="btn btn-info btn-lg" href="/campgrounds/new" role="button">Add new Campground</a>
+            </p>
+        
+        </div>
+    </header>
+    
+    <!-- Colt used style="display:flex;" flex-wrap:wrap; in the div just below in order to make sure that uneven size of the images doesn't throw away the grid layouts
+    but I removed it as the images were displayed fine even with out I guess the element=figure/figcaption worked out-->
+    <div class="row text-center">
+        
+        <% campgrounds.forEach(function(campgrounds){ %>
+            
+            <!--below div class specifies that the div should be responsive and should have 3 units spacing for medium screens and 6 units spacing on a grid for
+            small screens-->
+            <div class="col-md-3 col-sm-6">
+
+                <!--Below I have used figure and figcaption elements because Colt's class=thumbnail and class=caption were not working, below is the reference
+                https://getbootstrap.com/docs/4.0/content/figures/ -->
+                <figure class="figure">
+                    <img src="<%= campgrounds.image %>" class="figure-img img-fluid rounded">
+                    <figcpation class="figure-caption">
+                        <h4><%= campgrounds.name %></h4>
+                    </figcaption>
+                    <p>
+                        <a class="btn btn-info btn-md" href="/campgrounds/<%= campgrounds._id %>" role="button">More Info</a>
+                    </p>    
+                </figure>
+                
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/footer %>

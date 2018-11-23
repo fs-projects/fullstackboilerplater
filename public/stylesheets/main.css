@@ -1,0 +1,17 @@
+#delete_form{
+    display: inline;
+}
+
+#login-alert{
+    width:40%; 
+    margin:25px auto;
+}
+
+#login-page-header{
+    text-align:center;
+}
+
+#login-page-form-div{
+    width:40%; 
+    margin:25px auto;
+}

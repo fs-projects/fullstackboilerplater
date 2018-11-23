@@ -1,0 +1,77 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Yelp Camp</p>
+            <div class="list-group">
+                <li class="list-group-item active">Info-1</li>
+                <li class="list-group-item">Info-2</li>
+                <li class="list-group-item">Info-3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <!--Below I have used classes 'card' 'border-secondary', 'card-body', 'card' is unlike to what Colt's used which was 'thumbnail', it is because it was not 
+            working as expected for me. 'border-secondary' gives a grey border to the card. ref : https://getbootstrap.com/docs/4.0/components/card/-->
+            <div class="card border-secondary">
+                <img class="img-responsive" src="<%= campground.image %>">
+                <div class="card-body">
+                    <div class="caption-full">
+                        <!--Colt used 'pull-right' class to align the text to right, but it didn't worked so I used 'text-right' to achieve the same.
+                        ref : https://getbootstrap.com/docs/4.0/utilities/text/#text-alignment-->
+                        <h4 class="text-right">$<%= campground.price %>/night</h4>
+                        <h4><a class="card-link"><%= campground.name %></a></h4>
+                        <p><%= campground.description %></p>
+                        <p>
+                            <em>
+                                Submitted by - 
+                                <%= campground.author.username %>
+                            </em>
+                        </p>
+                        <!--We don't want to show 'Edit' and 'Delete' buttons of a Campground to users who are not logged in OR those who don't own a particular campground-->
+                        <% if(currentUser && currentUser._id.equals(campground.author.id)){ %>
+                            <a class="btn btn-dark btn-sm" href="/campgrounds/<%= campground._id %>/edit" role="button">Edit</a>
+                            <form id="delete_form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="card border-secondary">
+                <div class="text-right">
+                    <a class="btn btn-success btn-md" href="/campgrounds/<%=campground._id %>/comments/new">Add a comment</a>
+                </div>
+                <hr>
+                <% campground.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--notice here that earlier we had 'comment.author' but now since we have change the Comment model so now we have a new author 
+                            field that has two sub fiels of '_id' and '_username' of which we are taking the advantage of username to populate who posted the 
+                            comment for displayed campground-->
+                            <em>
+                                <strong><%= comment.author.username %></strong>
+                            </em>
+                            <span><h6 class="text-right">10 days ago</h4></span>
+                            <p>
+                                <%= comment.text %>
+                            </p>
+                            <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                                <a class="btn btn-dark btn-sm" 
+                                href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit" role="button">
+                                    Edit
+                                </a>
+                                <form id="delete_form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            <% } %>
+                        </div>
+                    </div>
+                    <hr>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<% include ../partials/footer %>

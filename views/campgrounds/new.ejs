@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+
+
+<div class="container">
+    
+        <h1 style="text-align:center">Create a new Campground!</h1>
+        <div style="width:40%; margin:25px auto;">
+            <form action="/campgrounds" method="POST">
+                <!--.row has been added with form-group
+                Create horizontal forms with the grid by adding the .row class to form groups reference 
+                https://getbootstrap.com/docs/4.0/components/forms/-->
+                <div class="form-group row">
+                    <input type="text" class="form-control" placeholder="enter new campground name" name="name">
+                </div>
+                <div class="form-group row">
+                <!--the min is the minimum number that needs to be entered, step is the iterative value i.e the max value by which you can increment your price
+                using the up and down arrows embedded in the price element box. -->
+                    <input type="number" class="form-control" placeholder="enter new campground price" name="price" min="0.01" step="0.01">
+                </div>
+                <div class="form-group row">
+                    <input type="text" class="form-control" placeholder="enter campground image url" name="image">
+                </div>
+                <div class="form-group row">
+                    <input type="text" class="form-control" placeholder="enter campground description" name="description">
+                </div>
+                <div class="form-group row">
+                    <button class="btn btn-lg btn-info btn-block">Submit!</button>
+                </div>
+            </form>
+        <a href="/campgrounds">Back to Campgrounds page</a>
+        </div>
+</div>
+
+
+<% include ../partials/footer %>
