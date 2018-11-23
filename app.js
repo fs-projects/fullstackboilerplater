@@ -99,7 +99,7 @@ var mongoose = require("mongoose");
 
 
 //We have to tell mongoose to connect to the mongod server that we are running here in cloud9 and to do that we have to use below command. yelp_camp is the 
-//the name of the database that we want to connect to in the mongod server. If restful_blog_app is not present in the running mongod server, restful_blog app
+//the name of the database that we want to connect to in the mongod server. If yelp_camp is not present in the running mongod server, yelp_camp
 //named database will be created otherwise the one existing already will be used.
 //If you will not use { useNewUrlParser: true } then you will get this error (node:4833) DeprecationWarning: current URL string parser is deprecated,
 //and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
@@ -109,11 +109,15 @@ var mongoose = require("mongoose");
 
 //Below statement will allow us to connect our application to the database hosted in MLAB servers in cloud where we have created our new account and created
 //a user 'yelpcampuser1' for our database 'fsprojectsyelpcamp'.
-mongoose.connect("mongodb://yelpcampdbuser1:W0rkHard@ds111748.mlab.com:11748/fsprojectsyelpcamp", { useNewUrlParser: true });
+//mongoose.connect("mongodb://yelpcampdbuser1:W0rkHard@ds111748.mlab.com:11748/fsprojectsyelpcamp", { useNewUrlParser: true });
 
 
+//Below we are making sure that we are using localdatabase i.e c9 localdatbase when the applications runs here in c9 and when this application runs on heroku
+//it will not run on c9 localdatabase instead url variable will be populated with the connection string that points to the production database i.e mlab database.
+//The value of connection string is stored in DATABASEURL config variable in settings sections of heroku dashboard.
 var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
 mongoose.connect(url, { useNewUrlParser: true });
+
 
 //This is how we are importing the 'Campground model into this 'app.js' for 2 reasons: --> to make our 'app.js' as clean as possible and --> to make
 //clarity in our structure, means, we will be adding 'User' and 'Comment' model in future so we will keep all those in separate files as that of the
