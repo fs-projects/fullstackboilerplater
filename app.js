@@ -112,6 +112,9 @@ var mongoose = require("mongoose");
 mongoose.connect("mongodb://yelpcampdbuser1:W0rkHard@ds111748.mlab.com:11748/fsprojectsyelpcamp", { useNewUrlParser: true });
 
 
+var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
+mongoose.connect(url, { useNewUrlParser: true });
+
 //This is how we are importing the 'Campground model into this 'app.js' for 2 reasons: --> to make our 'app.js' as clean as possible and --> to make
 //clarity in our structure, means, we will be adding 'User' and 'Comment' model in future so we will keep all those in separate files as that of the
 //'Campground' and export those models here in our app.js like we did here for 'Campground' model.
