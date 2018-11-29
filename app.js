@@ -114,7 +114,8 @@ var mongoose = require("mongoose");
 
 //Below we are making sure that we are using localdatabase i.e c9 localdatbase when the applications runs here in c9 and when this application runs on heroku
 //it will not run on c9 localdatabase instead url variable will be populated with the connection string that points to the production database i.e mlab database.
-//The value of connection string is stored in DATABASEURL config variable in settings sections of heroku dashboard.
+//The value of connection string is stored in DATABASEURL config variable in settings sections of heroku dashboard. Visit the link https://dashboard.heroku.com/apps/glacial-taiga-64450/settings
+//to know see the value of DATABASE parameter in heroku.
 var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
 mongoose.connect(url, { useNewUrlParser: true });
 
