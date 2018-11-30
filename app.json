@@ -1,0 +1,24 @@
+{
+  "name": "fullstackboilerplater",
+  "description": "A review app will be created so the developer can check his/her changes before pushing to staging area and finally to production.",
+  "scripts": {
+  },
+  "env": {
+    "DATABASEURL": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
