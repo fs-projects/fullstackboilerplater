@@ -112,12 +112,14 @@ var mongoose = require("mongoose");
 //mongoose.connect("mongodb://yelpcampdbuser1:W0rkHard@ds111748.mlab.com:11748/fsprojectsyelpcamp", { useNewUrlParser: true });
 
 
-//Below we are making sure that we are using localdatabase i.e c9 localdatbase when the applications runs here in c9 and when this application runs on heroku
+//Below we are making sure that we are using localdatabase i.e c9 localdatabase when the applications runs here in c9 and when this application runs on heroku
 //it will not run on c9 localdatabase instead url variable will be populated with the connection string that points to the production database i.e mlab database.
 //The value of connection string is stored in DATABASEURL config variable in settings sections of heroku dashboard. Visit the link https://dashboard.heroku.com/apps/glacial-taiga-64450/settings
 //to know see the value of DATABASE parameter in heroku.
+
+// Update : As of now I have to add 'useUnifiedTopology: true' below as I have now migrate from mLab to Mongodb Atlas as mLab is now owned by Mongodb. I have updated the connection string in heroku also to reflect the Atlas db connection string.
 var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
-mongoose.connect(url, { useNewUrlParser: true });
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }});
 
 
 //This is how we are importing the 'Campground model into this 'app.js' for 2 reasons: --> to make our 'app.js' as clean as possible and --> to make
