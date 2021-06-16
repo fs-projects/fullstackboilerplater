@@ -119,7 +119,7 @@ var mongoose = require("mongoose");
 
 // Update : As of now I have to add 'useUnifiedTopology: true' below as I have now migrate from mLab to Mongodb Atlas as mLab is now owned by Mongodb. I have updated the connection string in heroku also to reflect the Atlas db connection string.
 var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }});
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 //This is how we are importing the 'Campground model into this 'app.js' for 2 reasons: --> to make our 'app.js' as clean as possible and --> to make
